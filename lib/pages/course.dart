@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 
 class Course extends StatelessWidget {
@@ -362,3 +363,5 @@ class Course extends StatelessWidget {
     );
   }
 }
+
+ */

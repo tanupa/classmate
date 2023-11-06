@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 
 class People extends StatelessWidget {
@@ -179,3 +180,5 @@ class People extends StatelessWidget {
     );
   }
 }
+
+ */

@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 
 class Syllabus extends StatelessWidget {
@@ -103,3 +104,5 @@ class Syllabus extends StatelessWidget {
     );
   }
 }
+
+ */

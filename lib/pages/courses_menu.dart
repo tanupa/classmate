@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 
 class CoursesMenu extends StatelessWidget {
@@ -389,3 +390,4 @@ class CoursesMenu extends StatelessWidget {
     );
   }
 }
+ */

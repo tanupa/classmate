@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 
 class Mail extends StatelessWidget {
@@ -510,3 +511,5 @@ class Mail extends StatelessWidget {
     );
   }
 }
+
+ */
