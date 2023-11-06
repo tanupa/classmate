@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color.fromARGB(255,255,255,255),
+        scaffoldBackgroundColor: Colors.white,
       ),
       home: Scaffold(
         body: ListView(children: [
