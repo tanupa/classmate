@@ -23,3 +23,13 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/Poppins-Regular.ttf
+        - asset: assets/Poppins-Italic.ttf
+          style: italic
+    - family: Amethysta
+      fonts:
+        - asset: assets/Amethysta-Regular.ttf
