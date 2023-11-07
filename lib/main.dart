@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
       ),
       home: Scaffold(
-        body: ListView(children: [
-          Login(),
-        ]),
+        body: Center(
+          child: Login()
+        )
       ),
     );
   }
