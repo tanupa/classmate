@@ -16,6 +16,10 @@ class CoursesMenu extends StatelessWidget {
         .of(context)
         .viewPadding;
 
+    Course course1 = Course(classTitle: 'CMPE 272', professor: 'Andrew H. Bond', section: 'Sec 03', room: 'E341');
+    Course course2 = Course(classTitle: 'CMPE 202', professor: 'Gopinath Vinodh', section: 'Sec 02', room: 'C310');
+    List<Course> courseList = [course1, course2];
+
     return Column(
       children: [
         /// Padding for top of phone
@@ -40,27 +44,33 @@ class CoursesMenu extends StatelessWidget {
           height: 20,
         ),
         /// Course List
-        CoursePreview(classTitle: 'CMPE 272', professor: 'Andrew H. Bond', section: 'Section 3', room: 'E281'), // Replace with for loop and data from db.
-
+        CoursePreview(courseList: courseList), // Replace with for loop and data from db.
       ],
     );
   }
 }
 
+class Course{
+  String classTitle;
+  String professor;
+  String section;
+  String room;
+
+  Course({
+    required this.classTitle,
+    required this.professor,
+    required this.section,
+    required this.room
+  });
+}
 
 class CoursePreview extends StatelessWidget {
   const CoursePreview({
     super.key,
-    required this.classTitle,
-    required this.professor,
-    required this.section,
-    required this.room,
+    required this.courseList
   });
 
-  final String classTitle;
-  final String professor;
-  final String section;
-  final String room;
+  final List<Course> courseList;
 
   @override
   Widget build(BuildContext context) {
@@ -73,69 +83,80 @@ class CoursePreview extends StatelessWidget {
         .of(context)
         .viewPadding;
 
-    return Stack(
-        children: [
-          Container(
-            width: width - 100,
-            height: 57,
-            decoration: ShapeDecoration(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-              shadows: [
-                BoxShadow(
-                  color: Color(0x33000000),
-                  blurRadius: 4,
-                  offset: Offset(0, 2),
-                  spreadRadius: 0,
-                )
-              ],
+    return Column(
+      children: [
+        for (var course in courseList) Column(
+          children: [
+            Stack(
+              children: [
+                Container(
+                  width: width - 100,
+                  height: 57,
+                  decoration: ShapeDecoration(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                    shadows: [
+                      BoxShadow(
+                        color: Color(0x33000000),
+                        blurRadius: 4,
+                        offset: Offset(0, 2),
+                        spreadRadius: 0,
+                      )
+                    ],
+                  ),
+                ),
+                Positioned(
+                  left: 13,
+                  top: 10,
+                  child: Text(
+                    course.classTitle,
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 15,
+                  bottom: 10,
+                  child: Text(
+                    course.professor,
+                    style: TextStyle(
+                      color: Color(0xFF8B8B8B),
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  right: 13,
+                  top: 10,
+                  child: Text(
+                    course.section,
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  right: 15,
+                  bottom: 10,
+                  child: Text(
+                    course.room,
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      color: Color(0xFF8B8B8B),
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+              ]
             ),
-          ),
-          Positioned(
-            left: 13,
-            top: 10,
-            child: Text(
-              classTitle,
-              style: TextStyle(
-                fontSize: 14,
-              ),
+            Container(
+              height: 20,
             ),
-          ),
-          Positioned(
-            left: 15,
-            bottom: 10,
-            child: Text(
-              professor,
-              style: TextStyle(
-                color: Color(0xFF8B8B8B),
-                fontSize: 12,
-              ),
-            ),
-          ),
-          Positioned(
-            right: 13,
-            top: 10,
-            child: Text(
-              section,
-              textAlign: TextAlign.right,
-              style: TextStyle(
-                fontSize: 14,
-              ),
-            ),
-          ),
-          Positioned(
-            right: 15,
-            bottom: 10,
-            child: Text(
-              room,
-              textAlign: TextAlign.right,
-              style: TextStyle(
-                color: Color(0xFF8B8B8B),
-                fontSize: 12,
-              ),
-            ),
-          ),
-        ]
+          ],
+        ),
+                ],
     );
   }
 }
