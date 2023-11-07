@@ -1,7 +1,9 @@
+import 'package:classmate/pages/courses_menu.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'pages/login.dart';
+import 'pages/courses_menu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,12 +16,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(
+      theme: ThemeData(fontFamily: 'Amethysta').copyWith(
         scaffoldBackgroundColor: Colors.white,
       ),
       home: Scaffold(
         body: Center(
-          child: Login()
+          child: CoursesMenu()
         )
       ),
     );

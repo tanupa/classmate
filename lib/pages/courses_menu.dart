@@ -1,6 +1,115 @@
-/*
+import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+class CoursesMenu extends StatelessWidget {
+  const CoursesMenu({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery
+        .of(context)
+        .size;
+    double width = size.width;
+    double height = size.height;
+    final padding = MediaQuery
+        .of(context)
+        .viewPadding;
+
+    return Column(
+      children: [
+        /// Padding for top of phone
+        Container(
+          height: padding.top + 20,
+        ),
+        /// Title: Courses
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: width,
+          ),
+          child: Text(
+            'Courses',
+            style: TextStyle(
+              fontSize: 25,
+              letterSpacing: 6.25,
+            ),
+          ),
+        ),
+        /// Padding after title
+        Container(
+          height: 20,
+        ),
+        /// Course 1
+        Stack(
+          children: [
+            Container(
+              width: width - 100,
+              height: 57,
+              decoration: ShapeDecoration(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                shadows: [
+                  BoxShadow(
+                    color: Color(0x33000000),
+                    blurRadius: 4,
+                    offset: Offset(0, 2),
+                    spreadRadius: 0,
+                  )
+                ],
+              ),
+            ),
+            Positioned(
+              left: 13,
+              top: 10,
+              child: Text(
+                '<Class title>',
+                style: TextStyle(
+                  fontSize: 14,
+                ),
+              ),
+            ),
+            Positioned(
+              left: 15,
+              bottom: 10,
+              child: Text(
+                '<Professor>',
+                style: TextStyle(
+                  color: Color(0xFF8B8B8B),
+                  fontSize: 12,
+                ),
+              ),
+            ),
+            Positioned(
+              right: 13,
+              top: 10,
+              child: Text(
+                '<Section>',
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 14,
+                ),
+              ),
+            ),
+            Positioned(
+              right: 15,
+              bottom: 10,
+              child: Text(
+                '<Room>',
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  color: Color(0xFF8B8B8B),
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ]
+        ),
+      ],
+    );
+  }
+}
+
+/*
 class CoursesMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -17,6 +126,7 @@ class CoursesMenu extends StatelessWidget {
                 left: 34,
                 top: 102,
                 child: Container(
+                  width: 326,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -24,7 +134,7 @@ class CoursesMenu extends StatelessWidget {
                     children: [
                       Container(
                         width: 326,
-                        height: 190,
+                        height: 57,
                         child: Stack(
                           children: [
                             Positioned(
@@ -32,7 +142,7 @@ class CoursesMenu extends StatelessWidget {
                               top: 0,
                               child: Container(
                                 width: 326,
-                                height: 190,
+                                height: 57,
                                 decoration: ShapeDecoration(
                                   color: Colors.white,
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -48,8 +158,8 @@ class CoursesMenu extends StatelessWidget {
                               ),
                             ),
                             Positioned(
-                              left: 11,
-                              top: 160,
+                              left: 12,
+                              top: 29,
                               child: SizedBox(
                                 width: 117,
                                 height: 19,
@@ -66,8 +176,8 @@ class CoursesMenu extends StatelessWidget {
                               ),
                             ),
                             Positioned(
-                              left: 197,
-                              top: 160,
+                              left: 198,
+                              top: 29,
                               child: SizedBox(
                                 width: 117,
                                 height: 19,
@@ -85,10 +195,11 @@ class CoursesMenu extends StatelessWidget {
                               ),
                             ),
                             Positioned(
-                              left: 12,
-                              top: 139,
+                              left: 13,
+                              top: 8,
                               child: SizedBox(
                                 width: 96,
+                                height: 18,
                                 child: Text(
                                   '<Class title>',
                                   style: TextStyle(
@@ -102,10 +213,11 @@ class CoursesMenu extends StatelessWidget {
                               ),
                             ),
                             Positioned(
-                              left: 218,
-                              top: 139,
+                              left: 219,
+                              top: 8,
                               child: SizedBox(
                                 width: 96,
+                                height: 18,
                                 child: Text(
                                   '<Section>',
                                   textAlign: TextAlign.right,
@@ -115,26 +227,6 @@ class CoursesMenu extends StatelessWidget {
                                     fontFamily: 'Amethysta',
                                     fontWeight: FontWeight.w400,
                                     height: 0,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              left: 0,
-                              top: 0,
-                              child: Container(
-                                width: 326,
-                                height: 128,
-                                decoration: ShapeDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage("https://via.placeholder.com/326x128"),
-                                    fit: BoxFit.fill,
-                                  ),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(8),
-                                      topRight: Radius.circular(8),
-                                    ),
                                   ),
                                 ),
                               ),
@@ -207,8 +299,8 @@ class CoursesMenu extends StatelessWidget {
                                               clipBehavior: Clip.antiAlias,
                                               decoration: BoxDecoration(),
                                               child: Stack(children: [
-                                                  ,
-                                                  ]),
+                                              ,
+                                              ]),
                                             ),
                                           ],
                                         ),
@@ -249,8 +341,8 @@ class CoursesMenu extends StatelessWidget {
                                 width: 22,
                                 height: 22,
                                 child: Stack(children: [
-                                    ,
-                                    ]),
+                                ,
+                                ]),
                               ),
                               const SizedBox(height: 7),
                               SizedBox(
@@ -284,8 +376,8 @@ class CoursesMenu extends StatelessWidget {
                                 width: 18,
                                 height: 22,
                                 child: Stack(children: [
-                                    ,
-                                    ]),
+                                ,
+                                ]),
                               ),
                               const SizedBox(height: 7),
                               SizedBox(
@@ -319,8 +411,8 @@ class CoursesMenu extends StatelessWidget {
                                 width: 22,
                                 height: 18,
                                 child: Stack(children: [
-                                    ,
-                                    ]),
+                                ,
+                                ]),
                               ),
                               const SizedBox(height: 7),
                               SizedBox(
@@ -356,8 +448,8 @@ class CoursesMenu extends StatelessWidget {
                                 clipBehavior: Clip.antiAlias,
                                 decoration: BoxDecoration(),
                                 child: Stack(children: [
-                                    ,
-                                    ]),
+                                ,
+                                ]),
                               ),
                               const SizedBox(height: 6),
                               SizedBox(
