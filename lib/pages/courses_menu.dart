@@ -1,3 +1,4 @@
+import 'package:classmate/app_icons.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,8 +12,8 @@ class CoursesMenu extends StatelessWidget {
     double width = size.width;
     double height = size.height;
     final padding = MediaQuery.of(context).viewPadding;
-    GlobalKey key = GlobalKey();
 
+    // TO DO: Replace with data from db.
     Course course1 = Course(
         classTitle: 'CMPE 272',
         professor: 'Andrew H. Bond',
@@ -42,16 +43,16 @@ class CoursesMenu extends StatelessWidget {
             ),
           ),
         ),
-
         /// Course List
         Container(
           key: key,
           padding: EdgeInsets.only(top: 10, bottom: 10),
           width: width,
-          height: height - (padding.top + padding.bottom + 62),
+          height: 200, //height - (padding.top + padding.bottom + 62),
           child: SingleChildScrollView(
               child: CoursePreview(courseList: courseList)),
-        ), // Replace with for loop and data from db.
+        ),
+        NavBar(),
       ],
     );
   }
@@ -156,6 +157,224 @@ class CoursePreview extends StatelessWidget {
             ],
           ),
       ],
+    );
+  }
+}
+
+class NavBar extends StatelessWidget {
+  const NavBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double width = size.width;
+    double height = size.height;
+    final padding = MediaQuery.of(context).viewPadding;
+
+    return Container(
+      width: width,
+      height: 58,
+      padding: const EdgeInsets.only(top: 12, left: 12, right: 12),
+      decoration: BoxDecoration(color: Colors.white),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Container(
+              height: 46,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 24,
+                    height: 24,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            height: 24,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 24,
+                                  height: 24,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(),
+                                  child: Icon(AppIcons.home_icon, size: 24),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 16,
+                    child: Text(
+                      'Courses',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF474B51),
+                        fontSize: 12,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w400,
+                        height: 0.11,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              height: 44,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 22,
+                    height: 22,
+                    child: Icon(AppIcons.home_icon, size: 24),
+                  ),
+                  const SizedBox(height: 7),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 18,
+                    child: Text(
+                      'Calendar',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF474B51),
+                        fontSize: 12,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w400,
+                        height: 0.11,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              height: 44,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 18,
+                    height: 22,
+                    child: Icon(AppIcons.home_icon, size: 24),
+                  ),
+                  const SizedBox(height: 7),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 18,
+                    child: Text(
+                      'Tasks',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF474B51),
+                        fontSize: 12,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w400,
+                        height: 0.11,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              height: 36,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 22,
+                    height: 18,
+                    child: Icon(AppIcons.home_icon, size: 24),
+                  ),
+                  const SizedBox(height: 7),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 16,
+                    child: Text(
+                      'Mail',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF474B51),
+                        fontSize: 12,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w400,
+                        height: 0.11,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              height: 46,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 24,
+                    height: 24,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(),
+                    child: Icon(AppIcons.home_icon, size: 24),
+                  ),
+                  const SizedBox(height: 6),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 16,
+                    child: Text(
+                      'Profile',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF474B51),
+                        fontSize: 12,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w400,
+                        height: 0.11,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

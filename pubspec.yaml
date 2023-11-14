@@ -33,3 +33,6 @@ flutter:
     - family: Amethysta
       fonts:
         - asset: assets/Amethysta-Regular.ttf
+    - family: AppIcons
+      fonts:
+       - asset: assets/AppIcons.ttf
