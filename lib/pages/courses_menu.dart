@@ -7,30 +7,33 @@ class CoursesMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
     double width = size.width;
     double height = size.height;
-    final padding = MediaQuery
-        .of(context)
-        .viewPadding;
+    final padding = MediaQuery.of(context).viewPadding;
+    GlobalKey key = GlobalKey();
 
-    Course course1 = Course(classTitle: 'CMPE 272', professor: 'Andrew H. Bond', section: 'Sec 03', room: 'E341');
-    Course course2 = Course(classTitle: 'CMPE 202', professor: 'Gopinath Vinodh', section: 'Sec 02', room: 'C310');
-    List<Course> courseList = [course1, course2];
+    Course course1 = Course(
+        classTitle: 'CMPE 272',
+        professor: 'Andrew H. Bond',
+        section: 'Sec 03',
+        room: 'E341');
+    Course course2 = Course(
+        classTitle: 'CMPE 202',
+        professor: 'Gopinath Vinodh',
+        section: 'Sec 02',
+        room: 'C310');
+
+    List<Course> courseList = [
+      course1,
+      course2,
+    ];
 
     return Column(
       children: [
-        /// Padding for top of phone
-        Container(
-          height: padding.top + 20,
-        ),
         /// Title: Courses
-        ConstrainedBox(
-          constraints: BoxConstraints(
-            maxWidth: width,
-          ),
+        Container(
+          padding: EdgeInsets.only(top: padding.top + 20, bottom: 10),
           child: Text(
             'Courses',
             style: TextStyle(
@@ -39,62 +42,59 @@ class CoursesMenu extends StatelessWidget {
             ),
           ),
         ),
-        /// Padding after title
-        Container(
-          height: 20,
-        ),
+
         /// Course List
-        CoursePreview(courseList: courseList), // Replace with for loop and data from db.
+        Container(
+          key: key,
+          padding: EdgeInsets.only(top: 10, bottom: 10),
+          width: width,
+          height: height - (padding.top + padding.bottom + 62),
+          child: SingleChildScrollView(
+              child: CoursePreview(courseList: courseList)),
+        ), // Replace with for loop and data from db.
       ],
     );
   }
 }
 
-class Course{
+class Course {
   String classTitle;
   String professor;
   String section;
   String room;
 
-  Course({
-    required this.classTitle,
-    required this.professor,
-    required this.section,
-    required this.room
-  });
+  Course(
+      {required this.classTitle,
+      required this.professor,
+      required this.section,
+      required this.room});
 }
 
 class CoursePreview extends StatelessWidget {
-  const CoursePreview({
-    super.key,
-    required this.courseList
-  });
+  const CoursePreview({super.key, required this.courseList});
 
   final List<Course> courseList;
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
     double width = size.width;
     double height = size.height;
-    final padding = MediaQuery
-        .of(context)
-        .viewPadding;
+    final padding = MediaQuery.of(context).viewPadding;
 
     return Column(
       children: [
-        for (var course in courseList) Column(
-          children: [
-            Stack(
-              children: [
+        for (var course in courseList)
+          Column(
+            children: [
+              Stack(children: [
                 Container(
                   width: width - 100,
                   height: 57,
                   decoration: ShapeDecoration(
                     color: Colors.white,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
                     shadows: [
                       BoxShadow(
                         color: Color(0x33000000),
@@ -149,14 +149,13 @@ class CoursePreview extends StatelessWidget {
                     ),
                   ),
                 ),
-              ]
-            ),
-            Container(
-              height: 20,
-            ),
-          ],
-        ),
-                ],
+              ]),
+              Container(
+                height: 20,
+              ),
+            ],
+          ),
+      ],
     );
   }
 }

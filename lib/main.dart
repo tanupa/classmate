@@ -19,11 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(fontFamily: 'Amethysta').copyWith(
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: Scaffold(
-        body: Center(
-          child: CoursesMenu()
-        )
-      ),
+      home: Scaffold(body: CoursesMenu())
     );
   }
 }
