@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'pages/login.dart';
 import 'pages/courses_menu.dart';
+import 'navbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(fontFamily: 'Amethysta').copyWith(
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: Scaffold(body: CoursesMenu())
+      home: Scaffold(body: NavBar()),
     );
   }
 }

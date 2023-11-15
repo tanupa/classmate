@@ -25,9 +25,9 @@ class AppIcons {
   static const _kFontFam = 'AppIcons';
   static const String? _kFontPkg = null;
 
-  static const IconData home_icon = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData user = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData calendar = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData clipboard = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData mail_outline = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData li_user = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData home = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
