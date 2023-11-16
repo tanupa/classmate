@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 class Calendar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double width = size.width;
+    double height = size.height;
+    final padding = MediaQuery.of(context).viewPadding;
+
     return Container(
       color: Colors.green,
       alignment: Alignment.center,

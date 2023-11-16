@@ -1,8 +1,8 @@
 import 'package:classmate/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'pages/courses_menu.dart';
-import 'pages/calendar.dart';
-import 'pages/tasks.dart';
+//import 'pages/calendar.dart';
+//import 'pages/tasks.dart';
 import 'pages/mail.dart';
 import 'pages/profile.dart';
 
@@ -34,6 +34,7 @@ class _NavBarState extends State<NavBar> {
             icon: Icon(AppIcons.home),
             label: 'Courses',
           ),
+          /*
           BottomNavigationBarItem(
             icon: Icon(AppIcons.calendar),
             label: 'Calendar',
@@ -42,6 +43,8 @@ class _NavBarState extends State<NavBar> {
             icon: Icon(AppIcons.clipboard),
             label: 'Tasks',
           ),
+
+           */
           BottomNavigationBarItem(
             icon: Icon(AppIcons.mail_outline),
             label: 'Mail',
@@ -54,8 +57,8 @@ class _NavBarState extends State<NavBar> {
       ),
       body: <Widget>[
         CoursesMenu(),
-        Calendar(),
-        Tasks(),
+        //Calendar(),
+        //Tasks(),
         Mail(),
         Profile(),
       ][_selectedIndex],
