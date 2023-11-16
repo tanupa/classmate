@@ -6,8 +6,6 @@ import 'pages/tasks.dart';
 import 'pages/mail.dart';
 import 'pages/profile.dart';
 
-/// Flutter code sample for [NavigationBar].
-
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
 
@@ -16,37 +14,39 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  int currentPageIndex = 0;
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (int index) {
           setState(() {
-            currentPageIndex = index;
+            _selectedIndex = index;
           });
         },
-        indicatorColor: Color(0xFFB5E8FF),
-        selectedIndex: currentPageIndex,
-        destinations: const <Widget>[
-          NavigationDestination(
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Color(0xFF38B3EA),
+        unselectedItemColor: Color(0xFF484C52),
+        currentIndex: _selectedIndex,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
             icon: Icon(AppIcons.home),
             label: 'Courses',
           ),
-          NavigationDestination(
+          BottomNavigationBarItem(
             icon: Icon(AppIcons.calendar),
             label: 'Calendar',
           ),
-          NavigationDestination(
+          BottomNavigationBarItem(
             icon: Icon(AppIcons.clipboard),
             label: 'Tasks',
           ),
-          NavigationDestination(
+          BottomNavigationBarItem(
             icon: Icon(AppIcons.mail_outline),
             label: 'Mail',
           ),
-          NavigationDestination(
+          BottomNavigationBarItem(
             icon: Icon(AppIcons.user),
             label: 'Profile',
           ),
@@ -58,7 +58,7 @@ class _NavBarState extends State<NavBar> {
         Tasks(),
         Mail(),
         Profile(),
-      ][currentPageIndex],
+      ][_selectedIndex],
     );
   }
 }
