@@ -1,6 +1,17 @@
-/*
 import 'package:flutter/material.dart';
 
+class Calendar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.green,
+      alignment: Alignment.center,
+      child: const Text('Calendar Placeholder'),
+    );
+  }
+}
+
+/*
 class Calendar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

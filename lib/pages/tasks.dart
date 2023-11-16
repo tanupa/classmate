@@ -1,6 +1,17 @@
-/*
 import 'package:flutter/material.dart';
 
+class Tasks extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.blue,
+      alignment: Alignment.center,
+      child: const Text('Tasks Placeholder'),
+    );
+  }
+}
+
+/*
 class Tasks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

@@ -3,6 +3,19 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+class Course {
+  String classTitle;
+  String professor;
+  String section;
+  String room;
+
+  Course(
+      {required this.classTitle,
+        required this.professor,
+        required this.section,
+        required this.room});
+}
+
 class CoursesMenu extends StatelessWidget {
   const CoursesMenu({super.key});
 
@@ -57,19 +70,6 @@ class CoursesMenu extends StatelessWidget {
       ],
     );
   }
-}
-
-class Course {
-  String classTitle;
-  String professor;
-  String section;
-  String room;
-
-  Course(
-      {required this.classTitle,
-      required this.professor,
-      required this.section,
-      required this.room});
 }
 
 class CoursePreview extends StatelessWidget {

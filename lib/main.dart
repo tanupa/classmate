@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(fontFamily: 'Amethysta').copyWith(
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: Scaffold(body: NavBar()),
+      home: Scaffold(body: Login()),
     );
   }
 }

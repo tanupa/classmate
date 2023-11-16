@@ -1,6 +1,10 @@
 import 'package:classmate/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'pages/courses_menu.dart';
+import 'pages/calendar.dart';
+import 'pages/tasks.dart';
+import 'pages/mail.dart';
+import 'pages/profile.dart';
 
 /// Flutter code sample for [NavigationBar].
 
@@ -44,32 +48,16 @@ class _NavBarState extends State<NavBar> {
           ),
           NavigationDestination(
             icon: Icon(AppIcons.user),
-            label: 'People',
+            label: 'Profile',
           ),
         ],
       ),
       body: <Widget>[
         CoursesMenu(),
-        Container(
-          color: Colors.green,
-          alignment: Alignment.center,
-          child: const Text('Page 2'),
-        ),
-        Container(
-          color: Colors.blue,
-          alignment: Alignment.center,
-          child: const Text('Page 3'),
-        ),
-        Container(
-          color: Colors.white,
-          alignment: Alignment.center,
-          child: const Text('Page 4'),
-        ),
-        Container(
-          color: Colors.black87,
-          alignment: Alignment.center,
-          child: const Text('Page 5', style: TextStyle(color: Colors.white,)),
-        ),
+        Calendar(),
+        Tasks(),
+        Mail(),
+        Profile(),
       ][currentPageIndex],
     );
   }

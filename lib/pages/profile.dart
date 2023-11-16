@@ -1,3 +1,16 @@
+import 'package:flutter/material.dart';
+
+class Profile extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.black87,
+      alignment: Alignment.center,
+      child: const Text('Profile Placeholder', style: TextStyle(color: Colors.white,)),
+    );
+  }
+}
+
 /*
 import 'package:flutter/material.dart';
 
