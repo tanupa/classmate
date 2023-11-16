@@ -3,12 +3,84 @@ import 'package:flutter/material.dart';
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black87,
-      alignment: Alignment.center,
-      child: const Text('Profile Placeholder', style: TextStyle(color: Colors.white,)),
+    Size size = MediaQuery.of(context).size;
+    double width = size.width;
+    double height = size.height;
+    final padding = MediaQuery.of(context).viewPadding;
+
+    // Sample data to replace with db calls.
+    Address myAddress = Address(number: 123, street: 'Sesame St', city: 'San Jose', state: 'CA', zip: 95192);
+    User sampleUser = User(name: 'John Joe', id: 123456789, birthday: DateTime.utc(2000, 01, 01), gender: 'Male', email: 'johnjoe@sjsu.edu', phone: '4085551234', address: myAddress);
+
+    return Center(
+      child: Column(
+        children: [
+          /// Title
+          Container(
+            padding: EdgeInsets.only(top: padding.top + 20, bottom: 10),
+            child: Text(
+              'Profile',
+              style: TextStyle(
+                fontSize: 25,
+                letterSpacing: 6.25,
+              ),
+            ),
+          ),
+          DisplayUser(user: sampleUser),
+        ],
+      ),
     );
   }
+}
+
+class DisplayUser extends StatelessWidget {
+  const DisplayUser({super.key, required this.user});
+  final User user;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(top: 10, bottom: 10),
+      child: Text(
+        user.name,
+        style: TextStyle(fontSize: 15),
+      ),
+    );
+  }
+}
+
+class User {
+  String name;
+  int id;
+  DateTime birthday;
+  String gender;
+  String email;
+  String phone;
+  Address address;
+
+  User(
+      {required this.name,
+      required this.id,
+      required this.birthday,
+      required this.gender,
+      required this.email,
+      required this.phone,
+      required this.address});
+}
+
+class Address {
+  int number;
+  String street;
+  String city;
+  String state;
+  int zip;
+
+  Address(
+      {required this.number,
+      required this.street,
+      required this.city,
+      required this.state,
+      required this.zip});
 }
 
 /*

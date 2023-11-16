@@ -43,8 +43,7 @@ class _NavBarState extends State<NavBar> {
             icon: Icon(AppIcons.clipboard),
             label: 'Tasks',
           ),
-
-           */
+          */
           BottomNavigationBarItem(
             icon: Icon(AppIcons.mail_outline),
             label: 'Mail',

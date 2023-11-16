@@ -74,7 +74,6 @@ class CoursesMenu extends StatelessWidget {
 
 class CoursePreview extends StatelessWidget {
   const CoursePreview({super.key, required this.course});
-
   final Course course;
 
   @override
