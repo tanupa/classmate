@@ -1,12 +1,38 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
+
 class Mail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      alignment: Alignment.center,
-      child: const Text('Mail Placeholder'),
+    Size size = MediaQuery.of(context).size;
+    double width = size.width;
+    double height = size.height;
+    final padding = MediaQuery.of(context).viewPadding;
+
+    return Center(
+      child: Column(
+        children: [
+          /// Title
+          Container(
+            padding: EdgeInsets.only(top: padding.top + 20, bottom: 10),
+            child: Text(
+              'Mail',
+              style: TextStyle(
+                fontSize: 25,
+                letterSpacing: 6.25,
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(top: 10, bottom: 10),
+            child: Text(
+              'Placeholder',
+              style: TextStyle(fontSize: 15),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
