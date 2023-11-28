@@ -1,9 +1,6 @@
-import 'package:classmate/pages/courses_menu.dart';
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'pages/login.dart';
-import 'pages/courses_menu.dart';
+import 'pages/course_page.dart';
 import 'navbar.dart';
 
 void main() {
@@ -24,7 +21,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 
 /*
 class MyHomePage extends StatefulWidget {

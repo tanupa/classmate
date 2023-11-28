@@ -1,0 +1,39 @@
+import 'courseModel.dart';
+
+class User {
+  String name;
+  String id;
+  String password;
+  DateTime birthday;
+  String gender;
+  String email;
+  String phone;
+  Address address;
+  List<Course> enrolledCourses;
+
+  User(
+      {required this.name,
+      required this.id,
+      required this.password,
+      required this.birthday,
+      required this.gender,
+      required this.email,
+      required this.phone,
+      required this.address,
+      required this.enrolledCourses});
+}
+
+class Address {
+  int number;
+  String street;
+  String city;
+  String state;
+  int zip;
+
+  Address(
+      {required this.number,
+      required this.street,
+      required this.city,
+      required this.state,
+      required this.zip});
+}

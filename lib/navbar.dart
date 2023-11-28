@@ -1,13 +1,15 @@
 import 'package:classmate/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'pages/courses_menu.dart';
-//import 'pages/calendar.dart';
-//import 'pages/tasks.dart';
+import 'pages/calendar.dart';
+import 'pages/tasks.dart';
 import 'pages/mail.dart';
 import 'pages/profile.dart';
+import 'models/userModel.dart';
 
 class NavBar extends StatefulWidget {
-  const NavBar({super.key});
+  const NavBar({super.key, required this.user});
+  final User user;
 
   @override
   State<NavBar> createState() => _NavBarState();
@@ -34,7 +36,6 @@ class _NavBarState extends State<NavBar> {
             icon: Icon(AppIcons.home),
             label: 'Courses',
           ),
-          /*
           BottomNavigationBarItem(
             icon: Icon(AppIcons.calendar),
             label: 'Calendar',
@@ -43,7 +44,6 @@ class _NavBarState extends State<NavBar> {
             icon: Icon(AppIcons.clipboard),
             label: 'Tasks',
           ),
-          */
           BottomNavigationBarItem(
             icon: Icon(AppIcons.mail_outline),
             label: 'Mail',
@@ -55,9 +55,9 @@ class _NavBarState extends State<NavBar> {
         ],
       ),
       body: <Widget>[
-        CoursesMenu(),
-        //Calendar(),
-        //Tasks(),
+        CoursesMenu(user: user),
+        Calendar(),
+        Tasks(),
         Mail(),
         Profile(),
       ][_selectedIndex],
