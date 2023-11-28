@@ -36,6 +36,7 @@ class _NavBarState extends State<NavBar> {
             icon: Icon(AppIcons.home),
             label: 'Courses',
           ),
+          /*
           BottomNavigationBarItem(
             icon: Icon(AppIcons.calendar),
             label: 'Calendar',
@@ -48,6 +49,7 @@ class _NavBarState extends State<NavBar> {
             icon: Icon(AppIcons.mail_outline),
             label: 'Mail',
           ),
+          */
           BottomNavigationBarItem(
             icon: Icon(AppIcons.user),
             label: 'Profile',
@@ -55,11 +57,11 @@ class _NavBarState extends State<NavBar> {
         ],
       ),
       body: <Widget>[
-        CoursesMenu(user: user),
-        Calendar(),
-        Tasks(),
-        Mail(),
-        Profile(),
+        CoursesMenu(user: widget.user),
+        //Calendar(),
+        //Tasks(),
+        //Mail(),
+        Profile(user: widget.user),
       ][_selectedIndex],
     );
   }
