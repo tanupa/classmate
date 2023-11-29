@@ -1,6 +1,7 @@
 import 'courseModel.dart';
 
 class User {
+  final String uid;
   String name;
   String id;
   String password;
@@ -12,7 +13,8 @@ class User {
   List<Course> enrolledCourses;
 
   User(
-      {required this.name,
+      {required this.uid,
+      required this.name,
       required this.id,
       required this.password,
       required this.birthday,

@@ -1,11 +1,11 @@
 import 'package:classmate/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'pages/courses_menu.dart';
-import 'pages/calendar.dart';
-import 'pages/tasks.dart';
-import 'pages/mail.dart';
+//import 'calendar.dart';
+//import 'tasks.dart';
+//import 'mail.dart';
 import 'pages/profile.dart';
-import 'models/userModel.dart';
+import 'package:classmate/models/userModel.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key, required this.user});

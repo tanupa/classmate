@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/userModel.dart';
+import 'package:classmate/models/userModel.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key, required this.user});

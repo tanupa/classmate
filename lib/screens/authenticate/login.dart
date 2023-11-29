@@ -1,10 +1,12 @@
+import 'package:classmate/services/auth.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:classmate/navbar.dart';
-import '../models/courseModel.dart';
-import '../models/userModel.dart';
+import '../home/navbar.dart';
+import '../../models/courseModel.dart';
+import '../../models/userModel.dart';
 
+/*
 /// Dummy data
 Address myAddress = Address(
     number: 123,
@@ -83,6 +85,7 @@ User lizzUser = User(
     phone: '4085553456',
     address: myAddress,
     enrolledCourses: lizzCourseList);
+*/
 
 /// Start of code
 TextEditingController idController = TextEditingController();
@@ -96,9 +99,16 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  /*
   final _formKey = GlobalKey<FormState>();
-  TextEditingController idController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+   */
+
+  final AuthService _auth = AuthService();
+
+  String email = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +118,7 @@ class _LoginState extends State<Login> {
     final padding = MediaQuery.of(context).viewPadding;
 
     return Form(
-      key: _formKey,
+      //key: _formKey,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -142,7 +152,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 child: TextFormField(
-                    controller: idController,
+                    //controller: emailController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintStyle: TextStyle(
@@ -151,14 +161,20 @@ class _LoginState extends State<Login> {
                         fontSize: 16,
                         height: 1,
                       ),
-                      hintText: 'Student ID',
+                      hintText: 'Student Email',
                     ),
+                    onChanged: (val) {
+                      setState(() => email = val);
+                    },
+                    /*
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your ID';
+                        return 'Please enter your email.';
                       }
                       return null;
-                    }),
+                    }
+                     */
+                ),
               ),
             ),
             Container(
@@ -182,7 +198,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 child: TextFormField(
-                    controller: passwordController,
+                    //controller: passwordController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintStyle: TextStyle(
@@ -193,12 +209,20 @@ class _LoginState extends State<Login> {
                       ),
                       hintText: 'Password',
                     ),
+                    obscureText: true,
+                    onChanged: (val) {
+                      setState(() => password = val);
+                    },
+                    /*
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
                       }
                       return null;
-                    }),
+                    }
+
+                     */
+                    ),
               ),
             ),
             Container(
@@ -217,28 +241,9 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 child: TextButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      if (idController.text == johnUser.id &&
-                          passwordController.text == johnUser.password) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => NavBar(
-                                    user: johnUser,
-                                  )),
-                        );
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text('Invalid Credentials for John')),
-                        );
-                      }
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Please fill input')),
-                      );
-                    }
+                  onPressed: () async {
+                    print(email);
+                    print(password);
                   },
                   child: Text(
                     'Login',

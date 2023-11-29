@@ -2,7 +2,7 @@ import 'package:classmate/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 import 'courses_menu.dart';
-import '../models/courseModel.dart';
+import 'package:classmate/models/courseModel.dart';
 
 class CoursePage extends StatelessWidget {
   const CoursePage({super.key, required this.course});

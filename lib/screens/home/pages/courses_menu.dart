@@ -4,8 +4,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'course_page.dart';
-import '../models/courseModel.dart';
-import '../models/userModel.dart';
+import 'package:classmate/models/courseModel.dart';
+import 'package:classmate/models/userModel.dart';
 
 class CoursesMenu extends StatelessWidget {
   const CoursesMenu({super.key, required this.user});
