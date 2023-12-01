@@ -9,7 +9,7 @@ import 'package:classmate/models/userModel.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key, required this.user});
-  final User user;
+  final MyUser user;
 
   @override
   State<NavBar> createState() => _NavBarState();

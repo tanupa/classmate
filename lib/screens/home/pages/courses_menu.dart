@@ -9,7 +9,7 @@ import 'package:classmate/models/userModel.dart';
 
 class CoursesMenu extends StatelessWidget {
   const CoursesMenu({super.key, required this.user});
-  final User user;
+  final MyUser user;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +33,7 @@ class CoursesMenu extends StatelessWidget {
         ),
 
         /// Course List
+        /*
         Container(
           padding: EdgeInsets.only(top: 10, bottom: 10),
           width: width,
@@ -41,6 +42,8 @@ class CoursesMenu extends StatelessWidget {
             for (var course in user.enrolledCourses) CoursePreview(course: course),
           ]),
         ),
+
+         */
       ],
     );
   }

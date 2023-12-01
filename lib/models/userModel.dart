@@ -1,5 +1,12 @@
 import 'courseModel.dart';
 
+class MyUser {
+  final String? uid;
+
+  MyUser({ required this.uid });
+}
+
+/*
 class User {
   final String uid;
   String name;
@@ -39,3 +46,4 @@ class Address {
       required this.state,
       required this.zip});
 }
+*/

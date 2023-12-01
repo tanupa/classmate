@@ -88,8 +88,8 @@ User lizzUser = User(
 */
 
 /// Start of code
-TextEditingController idController = TextEditingController();
-TextEditingController passwordController = TextEditingController();
+//TextEditingController idController = TextEditingController();
+//TextEditingController passwordController = TextEditingController();
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -100,15 +100,16 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   /*
-  final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
    */
 
+  final _formKey = GlobalKey<FormState>();
   final AuthService _auth = AuthService();
 
   String email = '';
   String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +119,7 @@ class _LoginState extends State<Login> {
     final padding = MediaQuery.of(context).viewPadding;
 
     return Form(
-      //key: _formKey,
+      key: _formKey,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -134,128 +135,81 @@ class _LoginState extends State<Login> {
             Container(
               height: 15,
             ),
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: 250,
-                maxHeight: 50,
-              ),
-              child: Container(
-                decoration: ShapeDecoration(
-                  color: Color(0xFFFF8A8A),
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      width: 8,
-                      strokeAlign: BorderSide.strokeAlignCenter,
-                      color: Colors.white,
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+            TextFormField(
+              //controller: passwordController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                fillColor: Color(0xFFFF8A8A),
+                filled: true,
+                constraints: BoxConstraints(
+                    maxWidth: 250, minWidth: width < 100 ? width : 100),
+                hintStyle: TextStyle(
+                  color: Colors.white.withOpacity(0.65),
+                  // To be changed to white
+                  fontSize: 16,
+                  height: 1,
                 ),
-                child: TextFormField(
-                    //controller: emailController,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintStyle: TextStyle(
-                        color: Colors.white.withOpacity(0.5),
-                        // To be changed to white
-                        fontSize: 16,
-                        height: 1,
-                      ),
-                      hintText: 'Student Email',
-                    ),
-                    onChanged: (val) {
-                      setState(() => email = val);
-                    },
-                    /*
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your email.';
-                      }
-                      return null;
-                    }
-                     */
-                ),
+                hintText: 'Email',
               ),
+              onChanged: (value) {
+                setState(() => email = value);
+              },
+              validator: (value) =>
+                  value == null || value.isEmpty ? 'Enter your email' : null,
             ),
             Container(
               height: 5,
             ),
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: 250,
-                maxHeight: 50,
-              ),
-              child: Container(
-                decoration: ShapeDecoration(
-                  color: Color(0xFFFF8A8A),
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      width: 8,
-                      strokeAlign: BorderSide.strokeAlignCenter,
-                      color: Colors.white,
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+            TextFormField(
+              //controller: passwordController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                fillColor: Color(0xFFFF8A8A),
+                filled: true,
+                constraints: BoxConstraints(
+                    maxWidth: 250, minWidth: width < 100 ? width : 100),
+                hintStyle: TextStyle(
+                  color: Colors.white.withOpacity(0.65),
+                  // To be changed to white
+                  fontSize: 16,
+                  height: 1,
                 ),
-                child: TextFormField(
-                    //controller: passwordController,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintStyle: TextStyle(
-                        color: Colors.white.withOpacity(0.5),
-                        // To be changed to white
-                        fontSize: 16,
-                        height: 1,
-                      ),
-                      hintText: 'Password',
-                    ),
-                    obscureText: true,
-                    onChanged: (val) {
-                      setState(() => password = val);
-                    },
-                    /*
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your password';
-                      }
-                      return null;
-                    }
-
-                     */
-                    ),
+                hintText: 'Password',
               ),
+              obscureText: true,
+              onChanged: (value) {
+                setState(() => password = value);
+              },
+              validator: (value) =>
+                  value == null || value.isEmpty ? 'Enter your password' : null,
             ),
             Container(
               height: 15,
             ),
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: 100,
-                maxHeight: 45,
-              ),
-              child: Container(
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: TextButton(
-                  onPressed: () async {
-                    print(email);
-                    print(password);
-                  },
-                  child: Text(
-                    'Login',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      height: 0,
-                    ),
-                  ),
+            OutlinedButton(
+              child: Text(
+                'Login',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
                 ),
               ),
+              onPressed: () async {
+                if (_formKey.currentState!.validate()) {
+                  dynamic result = await _auth.signIn(email, password);
+                  if (result == null){
+                    setState(() =>
+                      error = 'Invalid credentials.'
+                    );
+                  }
+                }
+              },
+            ),
+            Container(height: 10),
+            Text(
+              error,
+              style: TextStyle(color: Colors.red, fontSize: 14),
             ),
           ],
         ),
