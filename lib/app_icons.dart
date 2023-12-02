@@ -30,4 +30,5 @@ class AppIcons {
   static const IconData clipboard = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData mail_outline = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData home = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData back_button = IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
