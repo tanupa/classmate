@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:classmate/models/userModel.dart';
 
 class Profile extends StatelessWidget {
-  const Profile({super.key, required this.user});
-  final MyUser user;
+  const Profile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,7 @@ class Profile extends StatelessWidget {
               ),
             ),
           ),
-          DisplayUser(user: user),
+          DisplayUser(),
         ],
       ),
     );
@@ -34,8 +33,7 @@ class Profile extends StatelessWidget {
 }
 
 class DisplayUser extends StatelessWidget {
-  const DisplayUser({super.key, required this.user});
-  final MyUser user;
+  const DisplayUser({super.key});
 
   @override
   Widget build(BuildContext context) {
