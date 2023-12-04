@@ -13,8 +13,8 @@ void main() async {
 
   /// Add data to Firebase
   // Only needs to run if data doesn't already exist, or if changes were made to initializeData() in firebase.dart.
-  // Before re-running, delete existing data (will not override).
-  await initializeData();
+  // Before re-running, delete existing data that you no longer want (will not override).
+  // await initializeData();
 
   runApp(const MyApp());
 }
