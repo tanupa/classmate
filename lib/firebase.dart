@@ -64,17 +64,17 @@ Future<void> addRandomUsersAndClasses(FirebaseFirestore db) async {
     int test_max = 150;
 
     return List.generate(homeworks, (index) => {
-      'assignment': 'Homework $index for $className',
+      'assignment': 'Homework ${index + 1} for $className',
       'description': 'Description for homework $index goes here.',
       'points': hw_min + rnd.nextInt(hw_max - hw_min),
       'type': 'homework',
     }) + List.generate(quizzes, (index) => {
-      'assignment': 'Quiz $index for $className',
+      'assignment': 'Quiz ${index + 1} for $className',
       'description': 'Description for quiz $index goes here.',
       'points': quiz_min + rnd.nextInt(quiz_max - quiz_min),
       'type': 'quiz',
     }) + List.generate(tests, (index) => {
-      'assignment': 'Test $index for $className',
+      'assignment': 'Test ${index + 1} for $className',
       'description': 'Description for test $index goes here.',
       'points': test_min + rnd.nextInt(test_max - test_min),
       'type': 'test',
@@ -127,7 +127,7 @@ Future<void> addRandomUsersAndClasses(FirebaseFirestore db) async {
           'title': 'Class $i',
           'section': section,
           'room': 'Room $i',
-          'assignments': getRandomAssignments('Class $i', 5, 3, 1),
+          'assignments': getRandomAssignments('Class $i', 5, 3, 2),
         };
 
         try {
