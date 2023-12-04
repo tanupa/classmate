@@ -146,7 +146,10 @@ Future<void> addRandomUsersAndClasses(FirebaseFirestore db) async {
 
 String getRandomRole() {
   final roles = ['professor', 'student'];
-  return roles[DateTime.now().millisecondsSinceEpoch % 2];
+  Random r = new Random();
+  bool result = r.nextDouble() <= 0.3;
+  if (result) return roles[0];
+  else return roles[1];
 }
 
 String getRandomName(List<String> predefinedNames) {
