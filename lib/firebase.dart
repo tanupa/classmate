@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-Future<void> initializeData() async {
+void main() {
   // Initialize Firebase (replace these values with your own)
   final firebaseConfig = {
     'apiKey': 'AIzaSyCdie8OMJZPmCXf_qjWv1Q-KxkR-MTuij8',
@@ -32,16 +32,15 @@ Future<void> initializeData() async {
 }
 
 Future<void> addRandomUsersAndClasses(FirebaseFirestore db) async {
-  Future<DocumentReference> getRandomStudentDocument() async {
-    // Get a random student document from the "users" collection
+  Future<List<DocumentReference>> getRandomStudents(int count) async {
+    // Get random student documents from the "users" collection
     final querySnapshot = await db
         .collection('users')
         .where('role', isEqualTo: 'student')
+        .limit(count)
         .get();
-    final documents = querySnapshot.docs;
-    final randomDocument = documents[
-    DateTime.now().millisecondsSinceEpoch % documents.length];
-    return randomDocument.reference;
+
+    return querySnapshot.docs.map((doc) => doc.reference).toList();
   }
 
   bool isSectionAvailable(String section, List<String> existingSections) {
@@ -121,8 +120,10 @@ Future<void> addRandomUsersAndClasses(FirebaseFirestore db) async {
 
         existingSections.add(section);
 
+        final students = await getRandomStudents(40); // Adjust the count as needed
+
         final classData = {
-          'students': await getRandomStudentDocument(),
+          'students': students,
           'professor': userDocRef,
           'title': 'Class $i',
           'section': section,
@@ -268,5 +269,3 @@ final predefinedNames = [
   'Aspyn Snyder',
   'Thiago Blackwel',
 ];
-
-
