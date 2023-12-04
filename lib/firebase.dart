@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> initializeData() async {
   // Initialize Firebase (replace these values with your own)
   final firebaseConfig = {
     'apiKey': 'AIzaSyCdie8OMJZPmCXf_qjWv1Q-KxkR-MTuij8',
@@ -50,10 +50,34 @@ Future<void> addRandomUsersAndClasses(FirebaseFirestore db) async {
   }
 
   List<Map<String, dynamic>> getRandomAssignments(
-      String className, int count) {
+      String className, int homeworks, int quizzes, int tests) {
     // Generate random assignments for a given class
-    return List.generate(count, (index) => {
-      'assignment': 'Assignment $index for $className',
+    var types = ['homework', 'quiz', 'test'];
+
+    // Get random point values in these ranges for each assignment.
+    Random rnd = new Random();
+    int hw_min = 10;
+    int hw_max = 25;
+    int quiz_min = 15;
+    int quiz_max = 30;
+    int test_min = 50;
+    int test_max = 150;
+
+    return List.generate(homeworks, (index) => {
+      'assignment': 'Homework $index for $className',
+      'description': 'Description for homework $index goes here.',
+      'points': hw_min + rnd.nextInt(hw_max - hw_min),
+      'type': 'homework',
+    }) + List.generate(quizzes, (index) => {
+      'assignment': 'Quiz $index for $className',
+      'description': 'Description for quiz $index goes here.',
+      'points': quiz_min + rnd.nextInt(quiz_max - quiz_min),
+      'type': 'quiz',
+    }) + List.generate(tests, (index) => {
+      'assignment': 'Test $index for $className',
+      'description': 'Description for test $index goes here.',
+      'points': test_min + rnd.nextInt(test_max - test_min),
+      'type': 'test',
     });
   }
 
@@ -103,7 +127,7 @@ Future<void> addRandomUsersAndClasses(FirebaseFirestore db) async {
           'title': 'Class $i',
           'section': section,
           'room': 'Room $i',
-          'assignments': getRandomAssignments('Class $i', 5),
+          'assignments': getRandomAssignments('Class $i', 5, 3, 1),
         };
 
         try {
