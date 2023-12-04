@@ -5,10 +5,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'package:classmate/models/userModel.dart';
+import 'firebase.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
+
+  /// Add data to Firebase
+  // Only needs to run if data doesn't already exist, or if changes were made to initializeData() in firebase.dart.
+  // Before re-running, delete existing data (will not override).
+  // await initializeData();
+
   runApp(const MyApp());
 }
 
