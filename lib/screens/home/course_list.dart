@@ -13,9 +13,6 @@ class _CourseListState extends State<CourseList> {
   @override
   Widget build(BuildContext context) {
     final courses = Provider.of<QuerySnapshot>(context);
-    for (var doc in courses.docs) {
-      print(doc.data());
-    }
 
     return const Placeholder();
   }

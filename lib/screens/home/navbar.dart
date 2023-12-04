@@ -7,6 +7,7 @@ import 'package:classmate/services/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'course_list.dart';
 import 'package:classmate/services/auth.dart';
+import 'logout-home.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -59,15 +60,16 @@ class _NavBarState extends State<NavBar> {
             ),
           ],
         ),
-        body: CourseList(),
-        /*
+        //body: CourseList(),
+
         body: <Widget>[
-          CoursesMenu(),
+          Logout(),
+          //CoursesMenu(),
           //Calendar(),
           //Tasks(),
           //Mail(),
           Profile(),
-        ][_selectedIndex], */
+        ][_selectedIndex],
       ),
     );
   }

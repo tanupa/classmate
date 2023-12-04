@@ -30,10 +30,11 @@ Future<void> initializeData() async {
   final db = FirebaseFirestore.instance;
 
   // Do first.
-  addRandomUsersAndClasses(db);
+  //addRandomUsersAndClasses(db);
 
   // May need to be re-run after addRandomUsersAndClasses(db);
   // If that's the case, comment out that line before re-running.
+
   final studentsSnapshot = await db.collection('users').where('role', isEqualTo: 'student').get();
   print(studentsSnapshot);
   for (var studentDoc in studentsSnapshot.docs) {
@@ -177,8 +178,6 @@ Future<void> addStudentGrades(FirebaseFirestore db, String studentId) async {
       .collection('classes')
       .where('students', arrayContains: studentRef)
       .get();
-
-  print(classesSnapshot);
 
   // Create a list to store courses and assignments with grades
   List<Map<String, dynamic>> courses = [];

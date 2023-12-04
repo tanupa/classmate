@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:classmate/models/userModel.dart';
 
+import 'home/logout-home.dart';
+
 class Wrapper extends StatelessWidget {
   const Wrapper({super.key});
 
