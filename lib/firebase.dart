@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 Future<void> initializeData() async {
   // Initialize Firebase (replace these values with your own)
@@ -32,6 +33,8 @@ Future<void> initializeData() async {
 }
 
 Future<void> addRandomUsersAndClasses(FirebaseFirestore db) async {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   Future<List<DocumentReference>> getRandomStudents(int count) async {
     // Get random student documents from the "users" collection
     final querySnapshot = await db
@@ -105,7 +108,14 @@ Future<void> addRandomUsersAndClasses(FirebaseFirestore db) async {
         continue;
       }
 
-      final userDocRef = await db.collection('users').add(user);
+      // register user with email and password
+      final password = user['name'].toString().replaceAll(' ', '') + user['id'].toString();
+      UserCredential result = await _auth.createUserWithEmailAndPassword(email: user['email'].toString(), password: password);
+      User? firebaseUser = result.user;
+
+      final userDocRef = await db.collection('users').doc(firebaseUser!.uid);
+      userDocRef.set(user);
+      // final userDocRef = await db.collection('users').add(user);
       print('User Document $i written with ID: ${userDocRef.id}');
 
       // Check if the user is a professor
