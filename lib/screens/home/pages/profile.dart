@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:classmate/models/userModel.dart';
+import 'package:classmate/services/auth.dart';
 
 class Profile extends StatelessWidget {
-  const Profile({super.key, required this.user});
-  final MyUser user;
+  Profile({super.key, required this.userData});
+  final Map<String, dynamic>? userData;
+
+  final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,13 @@ class Profile extends StatelessWidget {
               ),
             ),
           ),
-          DisplayUser(user: user),
+          DisplayUser(userData: userData),
+          OutlinedButton(
+            onPressed: () async {
+              await _auth.signOut();
+            },
+            child: Text('Logout'),
+          ),
         ],
       ),
     );
@@ -34,16 +43,15 @@ class Profile extends StatelessWidget {
 }
 
 class DisplayUser extends StatelessWidget {
-  const DisplayUser({super.key, required this.user});
-  final MyUser user;
+  const DisplayUser({super.key, required this.userData});
+  final Map<String, dynamic>? userData;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(top: 10, bottom: 10),
       child: Text(
-        'Name',
-        //user.name,
+        'Name: ${userData!['fields']['name']['stringValue']}',
         style: TextStyle(fontSize: 15),
       ),
     );

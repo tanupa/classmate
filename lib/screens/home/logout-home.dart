@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:classmate/services/auth.dart';
 
+import 'course_list.dart';
+
 class Logout extends StatelessWidget {
   final AuthService _auth = AuthService();
 
@@ -18,8 +20,9 @@ class Logout extends StatelessWidget {
               },
               child: Text('Logout'),
           )
-        ]
-      )
+        ],
+      ),
+      body: CourseList(),
 
     );
   }

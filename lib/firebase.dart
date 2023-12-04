@@ -29,7 +29,18 @@ Future<void> initializeData() async {
   // Assuming you have Firebase initialized in your project
   final db = FirebaseFirestore.instance;
 
-  addRandomUsersAndClasses(db);
+  // Do first.
+  //addRandomUsersAndClasses(db);
+
+  // May need to be re-run after addRandomUsersAndClasses(db);
+  // If that's the case, comment out that line before re-running.
+
+  final studentsSnapshot = await db.collection('users').where('role', isEqualTo: 'student').get();
+  print(studentsSnapshot);
+  for (var studentDoc in studentsSnapshot.docs) {
+    print("Adding grades...");
+    await addStudentGrades(db, studentDoc.id);
+  }
 }
 
 Future<void> addRandomUsersAndClasses(FirebaseFirestore db) async {
@@ -67,17 +78,17 @@ Future<void> addRandomUsersAndClasses(FirebaseFirestore db) async {
 
     return List.generate(homeworks, (index) => {
       'assignment': 'Homework ${index + 1} for $className',
-      'description': 'Description for homework $index goes here.',
+      'description': 'Description for homework ${index+1} goes here.',
       'points': hw_min + rnd.nextInt(hw_max - hw_min),
       'type': 'homework',
     }) + List.generate(quizzes, (index) => {
       'assignment': 'Quiz ${index + 1} for $className',
-      'description': 'Description for quiz $index goes here.',
+      'description': 'Description for quiz ${index+1} goes here.',
       'points': quiz_min + rnd.nextInt(quiz_max - quiz_min),
       'type': 'quiz',
     }) + List.generate(tests, (index) => {
       'assignment': 'Test ${index + 1} for $className',
-      'description': 'Description for test $index goes here.',
+      'description': 'Description for test ${index+1} goes here.',
       'points': test_min + rnd.nextInt(test_max - test_min),
       'type': 'test',
     });
@@ -87,12 +98,13 @@ Future<void> addRandomUsersAndClasses(FirebaseFirestore db) async {
   final existingSections = <String>[];
 
   // Add 100 user entries to the "users" collection
-  for (var i = 1; i <= 100; i++) {
+  for (var i = 1; i <= 15; i++) {
+    final role = getRandomRole();
     final user = {
       'name': getRandomName(predefinedNames),
       'id': i,
-      'email': 'user$i@example.com',
-      'role': getRandomRole(),
+      'email': '$role$i@example.com',
+      'role': role,
     };
 
     try {
@@ -118,7 +130,7 @@ Future<void> addRandomUsersAndClasses(FirebaseFirestore db) async {
       // final userDocRef = await db.collection('users').add(user);
       print('User Document $i written with ID: ${userDocRef.id}');
 
-      // Check if the user is a professor
+      // Check if the user is a professor and add a section to teach
       if (user['role'] == 'professor') {
         final section = 'Section $i';
 
@@ -130,7 +142,7 @@ Future<void> addRandomUsersAndClasses(FirebaseFirestore db) async {
 
         existingSections.add(section);
 
-        final students = await getRandomStudents(40); // Adjust the count as needed
+        final students = await getRandomStudents(4); // Adjust the count as needed
 
         final classData = {
           'students': students,
@@ -138,7 +150,7 @@ Future<void> addRandomUsersAndClasses(FirebaseFirestore db) async {
           'title': 'Class $i',
           'section': section,
           'room': 'Room $i',
-          'assignments': getRandomAssignments('Class $i', 5, 3, 2),
+          'assignments': getRandomAssignments('Class $i', 3, 1, 1),
         };
 
         try {
@@ -148,11 +160,58 @@ Future<void> addRandomUsersAndClasses(FirebaseFirestore db) async {
         } catch (error) {
           print('Error adding class document $i: $error');
         }
+
+        // User is a student. Add grades to their current assignments.
       }
     } catch (error) {
       print('Error adding user document $i: $error');
     }
+
   }
+}
+
+Future<void> addStudentGrades(FirebaseFirestore db, String studentId) async {
+  final studentRef = await db.collection('users').doc(studentId);
+
+  // Get the list of classes for the student
+  final classesSnapshot = await db
+      .collection('classes')
+      .where('students', arrayContains: studentRef)
+      .get();
+
+  // Create a list to store courses and assignments with grades
+  List<Map<String, dynamic>> courses = [];
+
+  for (var classDoc in classesSnapshot.docs) {
+    final assignments = classDoc['assignments'];
+
+    // Create a list to store assignments with grades
+    List<Map<String, dynamic>> assignmentsWithGrades = [];
+
+    // Add grades for each assignment
+    for (var assignment in assignments) {
+      final grade = {
+        'assignment_id': assignment['assignment'],
+        'points_earned': Random().nextInt(assignment['points']),
+      };
+
+      // Add the grade to the list of assignments with grades
+      assignmentsWithGrades.add(grade);
+    }
+
+    // Create a course object with assignments and add it to the list of courses
+    final course = {
+      'course_title': classDoc['title'],
+      'assignments': assignmentsWithGrades,
+    };
+
+    courses.add(course);
+  }
+
+  // Add the list of courses to the student's document
+  await db.collection('users').doc(studentId).update({
+    'courses': courses,
+  });
 }
 
 String getRandomRole() {

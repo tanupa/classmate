@@ -58,7 +58,7 @@ class CoursePage extends StatelessWidget {
                   width: (width - 60) * (2 / 3),
                   height: 35,
                   child: Text(
-                    course.classTitle,
+                    course.title,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 26,

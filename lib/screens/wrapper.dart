@@ -1,9 +1,10 @@
 import 'package:classmate/screens/authenticate/authenticate.dart';
-import 'package:classmate/screens/home/NavBar.dart';
+import 'package:classmate/screens/home/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:classmate/models/userModel.dart';
-import 'home/logout-home.dart'; // Add logout button; temporary usage
+
+import 'home/logout-home.dart';
 
 class Wrapper extends StatelessWidget {
   const Wrapper({super.key});
@@ -17,9 +18,9 @@ class Wrapper extends StatelessWidget {
       print('No user');
       return Scaffold(body: Authenticate());
     } else {
-      print('User');
-      // return Scaffold(body: NavBar());
-      return Scaffold(body: Logout());
+      print(user.uid);
+      return Scaffold(body: NavBar());
+      //return Scaffold(body: Logout());
     }
   }
 }

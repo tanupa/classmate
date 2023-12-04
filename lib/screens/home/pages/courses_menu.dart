@@ -8,8 +8,8 @@ import 'package:classmate/models/courseModel.dart';
 import 'package:classmate/models/userModel.dart';
 
 class CoursesMenu extends StatelessWidget {
-  const CoursesMenu({super.key, required this.user});
-  final MyUser user;
+  const CoursesMenu({super.key, required this.userData});
+  final Map<String, dynamic>? userData;
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +88,7 @@ class CoursePreview extends StatelessWidget {
               left: 13,
               top: 10,
               child: Text(
-                course.classTitle,
+                course.title,
                 style: TextStyle(
                   fontSize: 14,
                 ),
