@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(fontFamily: 'Amethysta').copyWith(
           scaffoldBackgroundColor: Colors.white,
         ),
-        home: WrapperWithPeople(), // Use WrapperWithPeople instead of Wrapper
+        home: Wrapper(), // Use WrapperWithPeople instead of Wrapper
       ),
     );
   }
