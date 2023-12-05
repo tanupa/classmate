@@ -34,6 +34,7 @@ class _NavBarState extends State<NavBar> {
     Map<String, dynamic>? data = await UserAPI.fetchCurrentUser();
     setState(() {
       userData = data;
+      print(userData);
     });
   }
 

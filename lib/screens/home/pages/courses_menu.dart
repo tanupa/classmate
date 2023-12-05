@@ -8,7 +8,8 @@ import 'package:classmate/models/courseModel.dart';
 import 'package:classmate/models/userModel.dart';
 
 class CoursesMenu extends StatelessWidget {
-  const CoursesMenu({super.key});
+  const CoursesMenu({super.key, required this.userData});
+  final Map<String, dynamic>? userData;
 
   @override
   Widget build(BuildContext context) {
