@@ -1,4 +1,3 @@
-import 'courseModel.dart';
 
 class MyUser {
   final String? uid;

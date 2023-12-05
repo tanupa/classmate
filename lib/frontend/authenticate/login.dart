@@ -2,9 +2,6 @@ import 'package:classmate/services/auth.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../home/navbar.dart';
-import '../../models/courseModel.dart';
-import '../../models/userModel.dart';
 
 /*
 /// Dummy data

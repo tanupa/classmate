@@ -1,11 +1,11 @@
-import 'package:classmate/screens/wrapper.dart';
+import 'package:classmate/frontend/wrapper.dart';
 import 'package:classmate/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'firebase.dart';
 import 'firebase_options.dart';
 import 'package:classmate/models/userModel.dart';
-import 'firebase.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,11 +14,10 @@ void main() async {
   /// Add data to Firebase
   // Only needs to run if data doesn't already exist, or if changes were made to initializeData() in firebase.dart.
   // Before re-running, delete existing data that you no longer want (will not override).
-  // await initializeData();
+  //await initializeData();
 
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(fontFamily: 'Amethysta').copyWith(
           scaffoldBackgroundColor: Colors.white,
         ),
-        home: Wrapper(),
+        home: WrapperWithPeople(), // Use WrapperWithPeople instead of Wrapper
       ),
     );
   }

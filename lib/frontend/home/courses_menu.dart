@@ -1,6 +1,5 @@
 import 'package:classmate/app_icons.dart';
 import 'package:english_words/english_words.dart';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'course_page.dart';

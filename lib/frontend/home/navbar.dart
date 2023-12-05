@@ -1,10 +1,10 @@
 import 'package:classmate/app_icons.dart';
 import 'package:flutter/material.dart';
-import 'pages/courses_menu.dart';
+import 'courses_menu.dart';
 //import 'calendar.dart';
 //import 'tasks.dart';
 //import 'mail.dart';
-import 'pages/profile.dart';
+import 'profile.dart';
 import 'package:classmate/models/userModel.dart';
 
 class NavBar extends StatefulWidget {

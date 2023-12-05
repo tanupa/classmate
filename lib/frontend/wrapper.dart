@@ -1,9 +1,10 @@
-import 'package:classmate/screens/authenticate/authenticate.dart';
+import 'package:classmate/frontend//authenticate/authenticate.dart';
 import 'package:classmate/screens/home/NavBar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:classmate/models/userModel.dart';
 import 'home/logout-home.dart'; // Add logout button; temporary usage
+import 'home/people.dart';
 
 class Wrapper extends StatelessWidget {
   const Wrapper({super.key});
@@ -19,7 +20,16 @@ class Wrapper extends StatelessWidget {
     } else {
       print('User');
       // return Scaffold(body: NavBar());
-      return Scaffold(body: Logout());
+      return Scaffold(body: Logout()); // Temporary usage; you can replace it with the desired content
     }
+  }
+}
+
+class WrapperWithPeople extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: People(), // Use the People widget here
+    );
   }
 }
