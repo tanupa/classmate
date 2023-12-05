@@ -1,4 +1,5 @@
 import 'package:classmate/app_icons.dart';
+import 'package:classmate/services/userEndpoint.dart';
 import 'package:flutter/material.dart';
 import 'pages/courses_menu.dart';
 import 'pages/profile.dart';
@@ -8,6 +9,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'course_list.dart';
 import 'package:classmate/services/auth.dart';
 import 'logout-home.dart';
+import 'package:provider/provider.dart';
+import 'package:classmate/models/userModel.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -18,6 +21,21 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   int _selectedIndex = 0;
+  Map<String, dynamic>? userData;
+
+  @override
+  void initState() {
+    super.initState();
+    // Call the fetchData function when the widget is created
+    fetchCurrentUser();
+  }
+
+  Future<void> fetchCurrentUser() async {
+    Map<String, dynamic>? data = await UserAPI.fetchCurrentUser();
+    setState(() {
+      userData = data;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,12 +81,12 @@ class _NavBarState extends State<NavBar> {
         //body: CourseList(),
 
         body: <Widget>[
-          Logout(),
-          //CoursesMenu(),
+          //Logout(),
+          CoursesMenu(userData: userData),
           //Calendar(),
           //Tasks(),
           //Mail(),
-          Profile(),
+          Profile(userData: userData),
         ][_selectedIndex],
       ),
     );
