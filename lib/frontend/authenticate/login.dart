@@ -3,91 +3,6 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-/*
-/// Dummy data
-Address myAddress = Address(
-    number: 123,
-    street: 'Sesame St',
-    city: 'San Jose',
-    state: 'CA',
-    zip: 95192);
-
-Course course1 = Course(
-    classTitle: 'CMPE 272',
-    professor: 'Andrew H. Bond',
-    section: 'Sec 03',
-    room: 'E341');
-Course course2 = Course(
-    classTitle: 'CMPE 202',
-    professor: 'Gopinath Vinodh',
-    section: 'Sec 02',
-    room: 'C310');
-Course course3 = Course(
-    classTitle: 'CMPE 101',
-    professor: 'Alan Apple',
-    section: 'Sec 01',
-    room: 'R101');
-Course course4 = Course(
-    classTitle: 'CMPE 200',
-    professor: 'Brett Borden',
-    section: 'Sec 02',
-    room: 'R200');
-Course course5 = Course(
-    classTitle: 'CMPE 080',
-    professor: 'Christie Castro',
-    section: 'Sec 03',
-    room: 'C180');
-
-List<Course> johnCourseList = [
-  course1,
-  course2,
-  course3,
-  course4,
-];
-List<Course> pamCourseList = [
-  course2,
-  course3,
-  course4,
-  course5,
-];
-List<Course> lizzCourseList = [course1, course2, course4, course5];
-
-User johnUser = User(
-    name: 'John Joe',
-    id: '123456789',
-    password: 'JohnPassword123',
-    birthday: DateTime.utc(2000, 01, 01),
-    gender: 'Male',
-    email: 'johnjoe@sjsu.edu',
-    phone: '4085551234',
-    address: myAddress,
-    enrolledCourses: johnCourseList);
-User pamUser = User(
-    name: 'Pam Paulson',
-    id: '012345678',
-    password: 'PamPassword123',
-    birthday: DateTime.utc(1999, 12, 12),
-    gender: 'Female',
-    email: 'pam.paulson@sjsu.edu',
-    phone: '4085552345',
-    address: myAddress,
-    enrolledCourses: pamCourseList);
-User lizzUser = User(
-    name: 'Lizz Leonard',
-    id: '234567890',
-    password: 'LizzPassword123',
-    birthday: DateTime.utc(2001, 02, 02),
-    gender: 'Female',
-    email: 'lizzleonard2@sjsu.edu',
-    phone: '4085553456',
-    address: myAddress,
-    enrolledCourses: lizzCourseList);
-*/
-
-/// Start of code
-//TextEditingController idController = TextEditingController();
-//TextEditingController passwordController = TextEditingController();
-
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -96,11 +11,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  /*
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-   */
-
   final _formKey = GlobalKey<FormState>();
   final AuthService _auth = AuthService();
 
@@ -133,7 +43,6 @@ class _LoginState extends State<Login> {
               height: 15,
             ),
             TextFormField(
-              //controller: passwordController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 fillColor: Color(0xFFFF8A8A),
@@ -158,7 +67,6 @@ class _LoginState extends State<Login> {
               height: 5,
             ),
             TextFormField(
-              //controller: passwordController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 fillColor: Color(0xFFFF8A8A),
