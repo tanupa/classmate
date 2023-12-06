@@ -38,10 +38,26 @@ class Grades extends StatelessWidget {
               indent: 25,
               endIndent: 25,
             ),
+
             ListTile(
+
               title: Text("Homework1"),
               trailing: Text("9/10"),
+              textColor: Colors.black,
+            ),
+            ListTile(
+
+              title: Text("Homework2"),
+              trailing: Text("8/10"),
+              textColor: Colors.black,
+            ),
+            ListTile(
+
+              title: Text("Homework3"),
+              trailing: Text("9/10"),
+              textColor: Colors.black,
             )
+
           ],
         ));
   }

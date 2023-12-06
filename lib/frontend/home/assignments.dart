@@ -1,3 +1,77 @@
+import 'package:flutter/material.dart';
+
+
+class Assignments extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('AP Physics 1'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(8.0),
+        children: [
+          _buildSectionTitle('Upcoming'),
+          _buildAssignmentTile('Homework 4', 'Due 10/10/23'),
+          _buildAssignmentTile('Lab 2', 'Due 10/13/23'),
+          _buildSectionTitle('Overdue'),
+          _buildAssignmentTile('Homework 2', 'Due 9/14/23'),
+          _buildSectionTitle('Past'),
+          _buildAssignmentTile('Homework 1', 'Submitted 9/2/23'),
+          _buildAssignmentTile('Lab 1', 'Submitted 9/19/23'),
+          _buildAssignmentTile('Homework 3', 'Submitted 10/1/23'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        child: Text(
+          title,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        )
+    );
+  }
+    Widget _buildAssignmentTile(String title, String date) {
+      return Card(
+        margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+        child: ListTile(
+          title: Text(
+            title,
+            style: TextStyle(
+              fontSize: 18, // Set the font size as needed
+              fontWeight: FontWeight.w500, // Adjust the font weight as needed
+            ),
+          ),
+          subtitle: Text(
+            date,
+            style: TextStyle(
+              fontSize: 16, // Set the font size as needed
+              color: Colors.grey[600], // Adjust the color as needed
+            ),
+          ),
+          tileColor: Colors.white,
+        ),
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Colors.black, width: 0.1),
+          borderRadius: BorderRadius.circular(4),
+        ),
+      );
+    }
+}
+
+
 /*
 import 'package:flutter/material.dart';
 
@@ -307,7 +381,7 @@ class Assignments extends StatelessWidget {
                           clipBehavior: Clip.antiAlias,
                           decoration: BoxDecoration(),
                           child: Stack(children: [
-                              ,
+
                               ]),
                         ),
                       ),
@@ -340,4 +414,6 @@ class Assignments extends StatelessWidget {
     );
   }
 }
- */
+
+
+*/

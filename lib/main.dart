@@ -1,3 +1,6 @@
+import 'package:classmate/frontend/home/assignments.dart';
+import 'package:classmate/frontend/home/course_page.dart';
+import 'package:classmate/frontend/home/grades.dart';
 import 'package:classmate/frontend/wrapper.dart';
 import 'package:classmate/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +17,7 @@ void main() async {
   /// Add data to Firebase
   // Only needs to run if data doesn't already exist, or if changes were made to initializeData() in firebase.dart.
   // Before re-running, delete existing data that you no longer want (will not override).
-  //await initializeData();
+  await initializeData();
 
   runApp(const MyApp());
 }
