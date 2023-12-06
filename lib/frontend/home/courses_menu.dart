@@ -7,7 +7,7 @@ import 'package:classmate/models/courseModel.dart';
 import 'package:classmate/models/userModel.dart';
 
 class CoursesMenu extends StatelessWidget {
-  const CoursesMenu({super.key, required this.userData});
+  const CoursesMenu({super.key, required this.userData,});
   final Map<String, dynamic>? userData;
 
   @override
@@ -16,6 +16,21 @@ class CoursesMenu extends StatelessWidget {
     double width = size.width;
     double height = size.height;
     final padding = MediaQuery.of(context).viewPadding;
+
+    var courses = userData!['fields']['courses']['arrayValue']['values'];
+
+    var courseList = [];
+
+    for (var course in courses){
+      var v = course['mapValue']['fields']; 
+      Course course1 = new Course(
+        professor: v['professor']['stringValue'],
+        room: v['room']['stringValue'],
+        classTitle: v['classTitle']['stringValue'],
+        section: v['section']['stringValue']
+      );
+      courseList.add(course1);
+    }
 
     return Column(
       children: [
@@ -30,19 +45,19 @@ class CoursesMenu extends StatelessWidget {
             ),
           ),
         ),
-
         /// Course List
-        /*
+
         Container(
           padding: EdgeInsets.only(top: 10, bottom: 10),
           width: width,
           height: 200,
           child: ListView(children: [
-            for (var course in user.enrolledCourses) CoursePreview(course: course),
+            for (var course in courseList) CoursePreview(course: course)
+
           ]),
         ),
 
-         */
+
       ],
     );
   }
