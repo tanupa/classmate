@@ -97,6 +97,9 @@ class Profile extends StatelessWidget {
                 "Log out",
                 style: TextStyle(color: Colors.black),
               ),
+              onTap: () async{
+                await _auth.signOut();
+              }
             )
           ],
         ),
