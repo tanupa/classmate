@@ -15,48 +15,315 @@ class Profile extends StatelessWidget {
     double height = size.height;
     final padding = MediaQuery.of(context).viewPadding;
 
-    return Center(
-      child: Column(
-        children: [
-          /// Title
-          Container(
-            padding: EdgeInsets.only(top: padding.top + 20, bottom: 10),
-            child: Text(
-              'Profile',
-              style: TextStyle(
-                fontSize: 25,
-                letterSpacing: 6.25,
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Container(
+          margin: EdgeInsets.only(left: width * 0.025),
+          child: Text(
+            'Profile',
+            style: TextStyle(
+              fontSize: 25,
+              letterSpacing: 6.25,
             ),
           ),
-          DisplayUser(userData: userData),
-          OutlinedButton(
-            onPressed: () async {
-              await _auth.signOut();
-            },
-            child: Text('Logout'),
-          ),
-        ],
+        ),
       ),
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: height * 0.025,
+            ),
+
+            /// Title
+
+            ListTile(
+              contentPadding: EdgeInsets.symmetric(horizontal: width * 0.075),
+              title: Text(
+                "John Doe",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.normal),
+              ),
+              trailing: CircleAvatar(
+                radius: 30,
+                backgroundColor: Colors.grey,
+              ),
+            ),
+            SizedBox(
+              height: height * 0.05,
+            ),
+            StudentInfo(
+              width: width,
+              title: "Student ID",
+              content: "XXXXXX",
+            ),
+            SizedBox(
+              height: height * 0.025,
+            ),
+            StudentInfo(
+              content: "BS Computer Science",
+              width: width,
+              title: "Course",
+            ),
+            SizedBox(
+              height: height * 0.025,
+            ),
+            StudentInfo(
+              content: "Spring 2025",
+              width: width,
+              title: "Graduation Date",
+            ),
+            // DisplayUser(user: user),
+            SizedBox(
+              height: height * 0.05,
+            ),
+
+            Divider(
+              indent: width * 0.075,
+              thickness: 1,
+              color: Colors.grey,
+              endIndent: width * 0.075,
+            ),
+            ListTile(
+              contentPadding: EdgeInsets.only(left: width * 0.075),
+              leading: Icon(
+                Icons.logout_rounded,
+                color: Colors.red,
+              ),
+              title: Text(
+                "Log out",
+                style: TextStyle(color: Colors.black),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class StudentInfo extends StatefulWidget {
+  StudentInfo({
+    super.key,
+    required this.width,
+    required this.title,
+    required this.content,
+  });
+
+  final double width;
+  String title;
+  String content;
+
+  @override
+  State<StudentInfo> createState() => _StudentInfoState();
+}
+
+class _StudentInfoState extends State<StudentInfo> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          margin: EdgeInsets.only(left: widget.width * 0.075),
+          child: Text(
+            widget.title,
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(right: widget.width * 0.075),
+          child: Text(
+            widget.content,
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+      ],
     );
   }
 }
 
 class DisplayUser extends StatelessWidget {
-  const DisplayUser({super.key, required this.userData});
-  final Map<String, dynamic>? userData;
+  const DisplayUser({super.key, required this.user});
+  final MyUser user;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 10, bottom: 10),
-      child: Text(
-        'Name: ${userData!['fields']['name']['stringValue']}',
-        style: TextStyle(fontSize: 15),
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.only(top: 10, bottom: 10),
+        child: Text(
+          'Name',
+          //user.name,
+          style: TextStyle(fontSize: 15),
+        ),
       ),
     );
   }
 }
+  /*
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double width = size.width;
+    double height = size.height;
+    final padding = MediaQuery.of(context).viewPadding;
+
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Container(
+          margin: EdgeInsets.only(left: width * 0.025),
+          child: Text(
+            'Profile',
+            style: TextStyle(
+              fontSize: 25,
+              letterSpacing: 6.25,
+            ),
+          ),
+        ),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: height * 0.025,
+            ),
+
+            /// Title
+
+            ListTile(
+              contentPadding: EdgeInsets.symmetric(horizontal: width * 0.075),
+              title: Text(
+                "John Doe",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.normal),
+              ),
+              trailing: CircleAvatar(
+                radius: 30,
+                backgroundColor: Colors.grey,
+              ),
+            ),
+            SizedBox(
+              height: height * 0.05,
+            ),
+            StudentInfo(
+              width: width,
+              title: "Student ID",
+              content: "XXXXXX",
+            ),
+            SizedBox(
+              height: height * 0.025,
+            ),
+            StudentInfo(
+              content: "BS Computer Science",
+              width: width,
+              title: "Course",
+            ),
+            SizedBox(
+              height: height * 0.025,
+            ),
+            StudentInfo(
+              content: "Spring 2025",
+              width: width,
+              title: "Graduation Date",
+            ),
+            // DisplayUser(user: user),
+            SizedBox(
+              height: height * 0.05,
+            ),
+
+            Divider(
+              indent: width * 0.075,
+              thickness: 1,
+              color: Colors.grey,
+              endIndent: width * 0.075,
+            ),
+            ListTile(
+              contentPadding: EdgeInsets.only(left: width * 0.075),
+              leading: Icon(
+                Icons.logout_rounded,
+                color: Colors.red,
+              ),
+              title: Text(
+                "Log out",
+                style: TextStyle(color: Colors.black),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class StudentInfo extends StatefulWidget {
+  StudentInfo({
+    super.key,
+    required this.width,
+    required this.title,
+    required this.content,
+  });
+
+  final double width;
+  String title;
+  String content;
+
+  @override
+  State<StudentInfo> createState() => _StudentInfoState();
+}
+
+class _StudentInfoState extends State<StudentInfo> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          margin: EdgeInsets.only(left: widget.width * 0.075),
+          child: Text(
+            widget.title,
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(right: widget.width * 0.075),
+          child: Text(
+            widget.content,
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class DisplayUser extends StatelessWidget {
+  const DisplayUser({super.key, required this.user});
+  final MyUser user;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.only(top: 10, bottom: 10),
+        child: Text(
+          'Name',
+          //user.name,
+          style: TextStyle(fontSize: 15),
+        ),
+      ),
+    );
+  }
+}
+
+*/ 
+
 
 /*
 import 'package:flutter/material.dart';
