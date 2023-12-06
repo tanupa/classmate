@@ -10,7 +10,7 @@ class UserAPI {
       if (user != null) {
         String? authToken = await user.getIdToken();
         String apiUrl =
-            'https://firestore.googleapis.com/v1/projects/classmate-174aa/databases/(default)/documents/users/${user.uid}';
+            'https://firestore.googleapis.com/v1/projects/classmate-174aa/databases/(default)/documents/usersV2/${user.uid}';
 
         final response = await http.get(
           Uri.parse(apiUrl),
