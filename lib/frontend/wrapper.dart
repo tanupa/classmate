@@ -24,6 +24,7 @@ class Wrapper extends StatelessWidget {
   }
 }
 
+/*
 class WrapperWithPeople extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -32,3 +33,4 @@ class WrapperWithPeople extends StatelessWidget {
     );
   }
 }
+ */

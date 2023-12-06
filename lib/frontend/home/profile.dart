@@ -21,31 +21,8 @@ class Profile extends StatelessWidget {
     var name = profile['name']['stringValue'];
     var id = profile['id']['integerValue'];
     var role = profile['role']['stringValue'];
-
-    var role_output;//had to hard code due to dart not having native capitalize()
-    var second_output1;//Where Program would be if Student
-    var second_output2;
-    var third_output1;//Where Graduation Date would be if Student
-    var third_output2;
-    
-    if(role == "professor"){
-      role_output = "Professor";
-
-      second_output1 = "School";
-      second_output2 = profile['school']['stringValue'];
-
-      third_output1 = "Clubs";
-      third_output2 = "Football";
-    }
-    else if(role == "student"){
-      role_output = "Student";
-
-      second_output1 = "Program";
-      second_output2 = "BS Computer Science";
-
-      third_output1 = "Graduation Date";
-      third_output2 = "Spring 2025";
-    }
+    var email = profile['email']['stringValue'];
+    var role_output = profile['role']['stringValue'];
 
     return Scaffold(
       appBar: AppBar(
@@ -79,34 +56,25 @@ class Profile extends StatelessWidget {
                     fontSize: 20,
                     fontWeight: FontWeight.normal),
               ),
-              trailing: CircleAvatar(
-                radius: 30,
-                backgroundColor: Colors.grey,
-              ),
             ),
             SizedBox(
               height: height * 0.05,
             ),
             StudentInfo(
               width: width,
-              title: '${role_output} ID',//userData role
+              title: '${role_output} id',//userData role
               content: id,//userData ID
             ),
             SizedBox(
               height: height * 0.025,
             ),
             StudentInfo(
-              content: second_output2,//second_output
+              content: email,//second_output
               width: width,
-              title: second_output1,
+              title: 'email',
             ),
             SizedBox(
               height: height * 0.025,
-            ),
-            StudentInfo(
-              content: third_output2,//third_output
-              width: width,
-              title: third_output1,
             ),
             // DisplayUser(user: user),
             SizedBox(

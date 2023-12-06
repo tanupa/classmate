@@ -2,7 +2,6 @@ import 'package:classmate/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:classmate/models/courseModel.dart';
 import 'people.dart';
-import 'assignments.dart';
 import 'grades.dart';
 
 class CoursePage extends StatelessWidget {
@@ -137,28 +136,14 @@ class CoursePage extends StatelessWidget {
             child: Column(children: [
               InkWell(
                 onTap: () {
+                  print('Going to people page');
+                  print(course.classTitle);
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => People()));
+                      MaterialPageRoute(builder: (context) => People(course: course)));
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text('People', style: TextStyle(fontSize: 18)),
-                ),
-              ),
-              Container(
-                color: Colors.grey.withOpacity(0.5),
-                height: 1,
-                width: double.infinity,
-                margin: EdgeInsets.symmetric(vertical: 4),
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Assignments()));
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text('Assignments', style: TextStyle(fontSize: 18)),
                 ),
               ),
               Container(
