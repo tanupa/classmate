@@ -4,19 +4,23 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import '../../firebase_service.dart';
+import 'package:classmate/models/courseModel.dart';
 
-
+final FirebaseService _firebaseService = FirebaseService();
 
 class People extends StatelessWidget {
-  final FirebaseService _firebaseService = FirebaseService();
+  const People({super.key, required this.course});
+
+  final Course course;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Map<String, dynamic>>>(
-      future: _firebaseService.getPeopleData(), // Define this function in your FirebaseService to fetch user data
+      future: _firebaseService.getPeopleData(course.classTitle),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator()); // Show a loading indicator
+          return Center(
+              child: CircularProgressIndicator()); // Show a loading indicator
         }
 
         if (snapshot.hasError) {
@@ -24,7 +28,16 @@ class People extends StatelessWidget {
         }
 
         // Data has been successfully fetched
-        List<Map<String, dynamic>> peopleData = snapshot.data!;
+        List<Map<String, dynamic>> courseData = snapshot.data!;
+        List<String> students = [];
+        for (Map<String, dynamic> course in courseData) {
+          String professor = course['professor_name'];
+          Map<String, dynamic> studentsMap = course['students'];
+
+          if (studentsMap != null) {
+            students.addAll(studentsMap.values.cast<String>());
+          }
+        }
 
         return SingleChildScrollView(
           child: Column(
@@ -72,38 +85,40 @@ class People extends StatelessWidget {
                 ),
               ),
               // People list
-              Container(
-                width: double.infinity,
-                color: Colors.white,
-                child: Column(
-                  children: [
-                    for (var person in peopleData)
-                      ListTile(
-                        title: Text(
-                          person['Name'] ?? 'N/A',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontFamily: 'Amethysta',
-                            fontWeight: FontWeight.w400,
-                            height: 0.06,
-                            letterSpacing: -0.41,
+              Material(
+                child: Container(
+                  width: double.infinity,
+                  color: Colors.white,
+                  child: Column(
+                    children: [
+                      for (var student in students)
+                        ListTile(
+                          title: Text(
+                            student,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontFamily: 'Amethysta',
+                              fontWeight: FontWeight.w400,
+                              height: 0.06,
+                              letterSpacing: -0.41,
+                            ),
+                          ),
+                          subtitle: Text(
+                            'student',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontFamily: 'Amethysta',
+                              fontWeight: FontWeight.w400,
+                              height: 0.06,
+                              letterSpacing: -0.41,
+                            ),
                           ),
                         ),
-                        subtitle: Text(
-                          person['Role'] ?? 'N/A',
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontFamily: 'Amethysta',
-                            fontWeight: FontWeight.w400,
-                            height: 0.06,
-                            letterSpacing: -0.41,
-                          ),
-                        ),
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -113,5 +128,3 @@ class People extends StatelessWidget {
     );
   }
 }
-
-
