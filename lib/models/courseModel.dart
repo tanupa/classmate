@@ -10,4 +10,3 @@ class Course {
         required this.section,
         required this.room});
 }
-
