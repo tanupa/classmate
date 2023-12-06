@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import '../../firebase_service.dart';
 import 'package:classmate/models/courseModel.dart';
+import 'package:classmate/app_icons.dart';
 
 final FirebaseService _firebaseService = FirebaseService();
 
@@ -15,6 +16,11 @@ class People extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double width = size.width;
+    double height = size.height;
+    final padding = MediaQuery.of(context).viewPadding;
+
     return FutureBuilder<List<Map<String, dynamic>>>(
       future: _firebaseService.getPeopleData(course.classTitle),
       builder: (context, snapshot) {
@@ -30,8 +36,9 @@ class People extends StatelessWidget {
         // Data has been successfully fetched
         List<Map<String, dynamic>> courseData = snapshot.data!;
         List<String> students = [];
+        String professor = "";
         for (Map<String, dynamic> course in courseData) {
-          String professor = course['professor_name'];
+          professor = course['professor_name'];
           Map<String, dynamic> studentsMap = course['students'];
 
           if (studentsMap != null) {
@@ -39,90 +46,110 @@ class People extends StatelessWidget {
           }
         }
 
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              // Header
-              Container(
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Header with back button and title
+            Container(
+              width: double.infinity,
+              height: 100,
+              color: Colors.white,
+              child: Row(
+                children: [
+                  // Back button
+                  Material(
+                    child: IconButton(
+                      color: Colors.green,
+                      icon: Icon(AppIcons.back_button, color: Colors.black, size: 40),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                  Container(
+                    width: 20,
+                  ),
+                  // People title
+                  SizedBox(
+                    width: width-100,
+                    height: 35,
+                    child: Text(
+                      'People',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontFamily: 'Amethysta',
+                        fontWeight: FontWeight.w400,
+                        height: 0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // People list
+            Material(
+              child: Container(
                 width: double.infinity,
-                height: 155,
                 color: Colors.white,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      width: 223,
-                      height: 26,
-                      child: Text(
-                        '<Course>',
-                        textAlign: TextAlign.center,
+                    ListTile(
+                      title: Text(
+                        professor,
                         style: TextStyle(
-                          color: Color(0xFF010101),
-                          fontSize: 26,
+                          color: Colors.black,
+                          fontSize: 20,
                           fontFamily: 'Amethysta',
                           fontWeight: FontWeight.w400,
-                          height: 0.03,
+                          height: 0.06,
+                          letterSpacing: -0.41,
+                        ),
+                      ),
+                      subtitle: Text(
+                        'professor',
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontFamily: 'Amethysta',
+                          fontWeight: FontWeight.w400,
+                          height: 0.06,
                           letterSpacing: -0.41,
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 336,
-                      height: 35,
-                      child: Text(
-                        'People',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 25,
-                          fontFamily: 'Amethysta',
-                          fontWeight: FontWeight.w400,
-                          height: 0,
+                    for (var student in students)
+                      ListTile(
+                        title: Text(
+                          student,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontFamily: 'Amethysta',
+                            fontWeight: FontWeight.w400,
+                            height: 0.06,
+                            letterSpacing: -0.41,
+                          ),
+                        ),
+                        subtitle: Text(
+                          'student',
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontFamily: 'Amethysta',
+                            fontWeight: FontWeight.w400,
+                            height: 0.06,
+                            letterSpacing: -0.41,
+                          ),
                         ),
                       ),
-                    ),
                   ],
                 ),
               ),
-              // People list
-              Material(
-                child: Container(
-                  width: double.infinity,
-                  color: Colors.white,
-                  child: Column(
-                    children: [
-                      for (var student in students)
-                        ListTile(
-                          title: Text(
-                            student,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontFamily: 'Amethysta',
-                              fontWeight: FontWeight.w400,
-                              height: 0.06,
-                              letterSpacing: -0.41,
-                            ),
-                          ),
-                          subtitle: Text(
-                            'student',
-                            textAlign: TextAlign.right,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontFamily: 'Amethysta',
-                              fontWeight: FontWeight.w400,
-                              height: 0.06,
-                              letterSpacing: -0.41,
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         );
       },
     );
