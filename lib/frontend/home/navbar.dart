@@ -75,9 +75,8 @@ class _NavBarState extends State<NavBar> {
           //Calendar(),
           //Tasks(),
           //Mail(),
-          Profile(userData: userData),
+          //ProfilePage(),
         ][_selectedIndex],
-
     );
   }
 }

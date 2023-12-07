@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import '../../firebase_service.dart';
-
-
 
 class People extends StatelessWidget {
   final FirebaseService _firebaseService = FirebaseService();
@@ -13,17 +9,15 @@ class People extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Map<String, dynamic>>>(
-      future: _firebaseService.getPeopleData(), // Define this function in your FirebaseService to fetch user data
+      future: _firebaseService.getPeopleData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator()); // Show a loading indicator
+          return Center(child: CircularProgressIndicator());
         }
 
         if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         }
-
-        // Data has been successfully fetched
         List<Map<String, dynamic>> peopleData = snapshot.data!;
 
         return SingleChildScrollView(
@@ -113,5 +107,4 @@ class People extends StatelessWidget {
     );
   }
 }
-
 

@@ -1,10 +1,23 @@
+// class MyUser {
+//   String id;
+//   String name;
+//   String email;
+//   String role;
+//
+//   MyUser({
+//     required this.id,
+//     required this.name,
+//     required this.email,
+//     required this.role,
+//   });
+// }
+//
 
 class MyUser {
   final String? uid;
 
   MyUser({ required this.uid });
 }
-
 /*
 class User {
   final String uid;

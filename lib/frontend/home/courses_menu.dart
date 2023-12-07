@@ -22,12 +22,12 @@ class CoursesMenu extends StatelessWidget {
     var courseList = [];
 
     for (var course in courses){
-      var v = course['mapValue']['fields']; 
+      var v = course['mapValue']['fields'];
       Course course1 = new Course(
-        professor: v['professor']['stringValue'],
-        room: v['room']['stringValue'],
-        classTitle: v['classTitle']['stringValue'],
-        section: v['section']['stringValue']
+          professor: v['professor']['stringValue'],
+          room: v['room']['stringValue'],
+          classTitle: v['classTitle']['stringValue'],
+          section: v['section']['stringValue']
       );
       courseList.add(course1);
     }
@@ -82,7 +82,7 @@ class CoursePreview extends StatelessWidget {
           decoration: ShapeDecoration(
             color: Colors.white,
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             shadows: [
               BoxShadow(
                 color: Color(0x33000000),

@@ -1,6 +1,3 @@
-import 'package:classmate/frontend/home/assignments.dart';
-import 'package:classmate/frontend/home/course_page.dart';
-import 'package:classmate/frontend/home/grades.dart';
 import 'package:classmate/frontend/wrapper.dart';
 import 'package:classmate/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +24,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final AuthService _authService = AuthService();
     return StreamProvider<MyUser?>.value(
-      value: AuthService().user,
+      value: _authService.user,
       initialData: null,
       child: MaterialApp(
         theme: ThemeData(fontFamily: 'Amethysta').copyWith(
