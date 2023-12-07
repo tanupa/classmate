@@ -19,10 +19,11 @@ class Profile extends StatelessWidget {
     var profile = userData!['fields'];
 
     var name = profile['name']['stringValue'];
-    var id = profile['id']['integerValue'];
-    var role = profile['role']['stringValue'];
+    var id = profile['id']['stringValue'];
     var email = profile['email']['stringValue'];
     var role_output = profile['role']['stringValue'];
+    var school = "";
+    if (role_output == "professor") school = profile['school']['stringValue'];
 
     return Scaffold(
       appBar: AppBar(
@@ -73,6 +74,16 @@ class Profile extends StatelessWidget {
               width: width,
               title: 'email',
             ),
+            if (role_output == "professor")
+              SizedBox(
+                height: height * 0.025,
+              ),
+            if (role_output == "professor")
+              StudentInfo(
+                content: school,
+                width: width,
+                title: 'school',
+              ),
             SizedBox(
               height: height * 0.025,
             ),
